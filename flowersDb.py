@@ -16,6 +16,17 @@ password1 = mySecretPasscode
 username1 = susie1334
 password1 = mySecretPasscode2
 
+def updateSightingName(crs,flowerName,personName,location,date):
+	print("what is the new name?")
+	newName = input()
+
+	#update name
+	sql_command = """update sightings set name=:newName where name=:flowerName"""
+
+	#execute the statement
+	crs2.execute(sql_command, {"newName":newName, "flowerName":flowerName})
+
+	crs2.close()
 
 def updateGenus(crs2,ogName):
 	print("what is the new genus?")
@@ -101,6 +112,30 @@ def flowerInsert(crs):
 
 def flowerUpdate(crs):
 	#################################### UPDATE  ####################################
+
+	print("Which table do you want to update?")
+	table = input()
+
+	if table == 'sightings'
+		print("What is the name?")
+		flowerName = input()
+
+		print("Who is the person?")
+		personName = input()
+
+		print("What is the location?")
+		location = input()
+
+		print("When was the sighting? (YYYY-DD-MM)")
+		date = input()
+
+		print("What do you want to modify?")
+		updateChoice = input()
+
+		if updateChoice == 'name':
+			updateSightingName(crs,flowerName,personName,location,date)
+
+
 
 	print("which flower do you want to update? provide comname")
 	ogName = input()
