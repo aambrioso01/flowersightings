@@ -21,12 +21,12 @@ def updateSightingName(crs,flowerName,personName,location,date):
 	newName = input()
 
 	#update name
-	sql_command = """update sightings set name=:newName where name=:flowerName"""
+	sql_command = """update sightings set name=:newName where name=:flowerName and person=:personName and location=:location and sighted=:date"""
 
 	#execute the statement
-	crs2.execute(sql_command, {"newName":newName, "flowerName":flowerName})
+	crs.execute(sql_command, {"newName":newName, "flowerName":flowerName, "personName"=:personName, "location"=:location, "date"=:date})
 
-	crs2.close()
+	crs.close()
 
 def updateGenus(crs2,ogName):
 	print("what is the new genus?")
@@ -126,7 +126,7 @@ def flowerUpdate(crs):
 		print("What is the location?")
 		location = input()
 
-		print("When was the sighting? (YYYY-DD-MM)")
+		print("When was the sighting? (YYYY-MM-DD)")
 		date = input()
 
 		print("What do you want to modify?")
@@ -136,24 +136,24 @@ def flowerUpdate(crs):
 			updateSightingName(crs,flowerName,personName,location,date)
 
 
+	if table == 'flowers'
+		print("which flower do you want to update? provide comname")
+		ogName = input()
 
-	print("which flower do you want to update? provide comname")
-	ogName = input()
+		print("do you want to modify genus, species, or comname?")
+		updateChoice = input()
 
-	print("do you want to modify genus, species, or comname?")
-	updateChoice = input()
+		#perform query on flowers
+		if updateChoice == 'genus':
+			updateGenus(crs,ogName)
 
-	#perform query on flowers
-	if updateChoice == 'genus':
-		updateGenus(crs,ogName)
+		#perform insert on flowers
+		if updateChoice == 'species':
+			updateSpecies(crs,ogName)
 
-	#perform insert on flowers
-	if updateChoice == 'species':
-		updateSpecies(crs,ogName)
-
-	#perform update on flowers
-	if updateChoice == 'comname':
-		updateComname(crs,ogName)	
+		#perform update on flowers
+		if updateChoice == 'comname':
+			updateComname(crs,ogName)	
 
 	crs.close()
 
